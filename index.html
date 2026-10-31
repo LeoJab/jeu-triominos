@@ -144,7 +144,7 @@ button,input{font:inherit;color:inherit}
 #ov{position:absolute;inset:0;z-index:30;display:none;padding:12px;overflow:auto}
 #ov.show{display:grid}
 #ov>*{margin:auto}
-#ov.menu{background:radial-gradient(1200px 800px at 50% 25%,#3b4bff 0%,#2433f2 45%,#151fa8 100%)}
+#ov.menubg{background:radial-gradient(1200px 800px at 50% 25%,#3b4bff 0%,#2433f2 45%,#151fa8 100%)}
 #ov.dim{background:rgba(10,8,44,.62);backdrop-filter:blur(2px)}
 #ov.dim.low{background:transparent;backdrop-filter:none;pointer-events:none}
 #ov.dim.low>*{pointer-events:auto;margin:auto auto 0}
@@ -1340,9 +1340,9 @@ function renderOverlay(){
   const hn=$$('.hn');if(hn.length)hn.forEach((el,i)=>ui.hot.names[i]=el.value);
   let html='',cls='';
   const ended=S&&(S.phase==='roundEnd'||S.phase==='gameEnd');
-  if(!mode){cls='menu';html=viewMenu()}
-  else if(mode==='online'&&(!S||!net||!net.ready)){cls='menu';html=viewConnecting()}
-  else if(S&&S.phase==='lobby'){cls='menu';html=viewLobby()}
+  if(!mode){cls='menubg';html=viewMenu()}
+  else if(mode==='online'&&(!S||!net||!net.ready)){cls='menubg';html=viewConnecting()}
+  else if(S&&S.phase==='lobby'){cls='menubg';html=viewLobby()}
   else if(ended&&Date.now()>=endShowAt&&!hideEnd){cls='dim';html=S.phase==='gameEnd'?viewGameEnd():viewRoundEnd()}
   else if(ended&&hideEnd){cls='dim low';html=`<button class="btn" style="margin-bottom:84px" data-act="showEnd">📊 Résultats</button>`}
   else if(curtain&&S&&S.phase==='play'){cls='dim';html=viewCurtain()}
